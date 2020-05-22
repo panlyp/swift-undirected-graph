@@ -32,7 +32,7 @@ public class AdjacencyList<T: Hashable>: CustomStringConvertible {
         var startingPath = [src]
         var visited = Set(arrayLiteral: src)
         var paths: [[Vertex<Item>]] = []
-        return getPaths(dst: dst, currentPath: &startingPath, visited: &visited, paths: &paths)
+        return searchPaths(dst: dst, currentPath: &startingPath, visited: &visited, paths: &paths)
     }
     
     /* =============== Private functions =============== */
@@ -45,8 +45,9 @@ public class AdjacencyList<T: Hashable>: CustomStringConvertible {
     }
     
     // given two points, search for all (simple) paths)
-    private func getPaths(dst: Vertex<Item>,
-                          currentPath: inout [Vertex<Item>], // continuing from here
+    // based on dfs
+    private func searchPaths(dst: Vertex<Item>,
+                             currentPath: inout [Vertex<Item>], // continuing from here
         visited: inout Set<Vertex<Item>>, // these nodes will be skipped
         paths: inout [[Vertex<Item>]]) -> [[Vertex<Item>]]? {
         
@@ -61,13 +62,37 @@ public class AdjacencyList<T: Hashable>: CustomStringConvertible {
                 if !visited.contains(v) {
                     currentPath.append(v)
                     visited.insert(v)
-                    _ = getPaths(dst: dst, currentPath: &currentPath, visited: &visited, paths: &paths)
+                    _ = searchPaths(dst: dst, currentPath: &currentPath, visited: &visited, paths: &paths)
                     visited.remove(v)
                     _ = currentPath.popLast()
                 }
             }
         }
         return paths
+    }
+    
+    // print the paths list
+    private func printPaths(from src: Vertex<Item>, to dst: Vertex<Item>, showShortest: Bool) {
+        if let pathsList = paths(from: src, to: dst) {
+            let paths = pathsList.sorted { $0.count < $1.count } // sort by length
+            
+            switch showShortest {
+            case true: // only select the shortest path(s)
+                let minSteps = paths[0].count
+                print("The Least Number of Hop(s): \n\t\(minSteps - 1)")
+                print("The Shortest Path(s):")
+                for path in paths {
+                    if path.count == minSteps { print("\t\(path)") }
+                }
+            default: // show all paths
+                print("All Simple Paths:")
+                var i = 1
+                for path in paths {
+                    print("#\(i)\t\(path)")
+                    i += 1
+                }
+            }
+        } else { print("No path found!") }
     }
     
     /* =============== Printing =============== */
@@ -77,33 +102,14 @@ public class AdjacencyList<T: Hashable>: CustomStringConvertible {
         print("\(description)")
     }
     
-    // print the paths list
+    // print all the possible paths
     public func printAllPaths(from src: Vertex<Item>, to dst: Vertex<Item>) {
-        if let pathsList = paths(from: src, to: dst) {
-            let paths = pathsList.sorted { $0.count < $1.count } // sort by length
-            print("All Simple Paths:")
-            var i = 1
-            for path in paths {
-                print("#\(i)\t\(path)")
-                i += 1
-            }
-        } else {
-            print("No path found!")
-        }
+        printPaths(from: src, to: dst, showShortest: false)
     }
     
     // print info about the shortest path and the edges
     public func printShortestPath(from src: Vertex<Item>, to dst: Vertex<Item>) {
-        if let pathsList = paths(from: src, to: dst) {
-            print("The Shortest Path(s):")
-            let paths = pathsList.sorted { $0.count < $1.count } // sort by length
-            let minSteps = paths[0].count
-            for path in paths {
-                if path.count == minSteps { print("\t\(path)") }
-            }
-        } else {
-            print("No path found!")
-        }
+        printPaths(from: src, to: dst, showShortest: true)
     }
     
     public var description: String {

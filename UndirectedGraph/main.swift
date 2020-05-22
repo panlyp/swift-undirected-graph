@@ -41,10 +41,16 @@ graph.link(from: vG, to: vH)
 /* Print adjancency list and path info */
 let divider = "==================================="
 
-print(divider)
-graph.printAdjacencyList()
-print(divider)
-graph.printAllPaths(from: src, to: dst)
-print(divider)
-graph.printShortestPath(from: src, to: dst)
-print(divider)
+measure(graph.printAdjacencyList())
+measure(graph.printAllPaths(from: src, to: dst))
+measure(graph.printShortestPath(from: src, to: dst))
+
+
+/* A simple function to measure time elapsed */
+func measure(_ closure: @autoclosure () -> Any) {
+    let start = CFAbsoluteTimeGetCurrent()
+    _ = closure()
+    let diff = CFAbsoluteTimeGetCurrent() - start
+    print("\(diff) seconds elapsed")
+    print(divider)
+}
