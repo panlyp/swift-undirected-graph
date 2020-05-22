@@ -35,14 +35,14 @@ New things learnt:
 
   - [Generics](https://docs.swift.org/swift-book/LanguageGuide/Generics.html): Associated Types, and Generic Types.
   - [Protocols](https://docs.swift.org/swift-book/LanguageGuide/Protocols.html#ID271): Mutating Methods
-  - [Optional Chaining](https://docs.swift.org/swift-book/LanguageGuide/OptionalChaining.html#ID246): : Optional Chaining as an Alternative to Forced Unwrapping
+  - [Optional Chaining](https://docs.swift.org/swift-book/LanguageGuide/OptionalChaining.html#ID246): Optional Chaining as an Alternative to Forced Unwrapping
 
 **Graph**
 
 Graph is implemented using **Adjancency List**.
 
-- The search function `getPaths` is based on DSF.
-- In `searchPaths`, a set of vertices `visited` is used to keep track of the visited nodes. 
+- The search function `searchPaths` is based on DSF.
+- A set of vertices `visited` is used to keep track of the visited nodes. 
 
 ## ⛏ Issues faced
 
