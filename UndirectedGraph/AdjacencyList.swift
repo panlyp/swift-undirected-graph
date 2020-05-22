@@ -1,5 +1,5 @@
 //
-//  Graph.swift
+//  AdjacencyList.swift
 //  UndirectedGraph
 //
 //  Created by Pan on 22/5/2020.
@@ -10,7 +10,7 @@ import Foundation
 
 /* Adjacency List */
 public class AdjacencyList<T: Hashable>: CustomStringConvertible {
-    public var adj: [Vertex<T>: [Edge<T>]] = [:] // using dictionary
+    public var adj: [Vertex<T>: [Vertex<T>]] = [:] // using dictionary
     public typealias Item = T
     
     // create a new vertex with data and return the new vertex
@@ -21,11 +21,8 @@ public class AdjacencyList<T: Hashable>: CustomStringConvertible {
     }
     
     /* =============== Helper functions =============== */
-    // [helper] given 2 nodes, create an edge linking the two
-    public func link(from src: Vertex<Item>, to dst: Vertex<Item>) { addEdge(from: src, to: dst) }
-    
-    // [helper] given a node, return the edges that it connects to
-    public func edges(from src: Vertex<Item>) -> [Edge<Item>]? { adj[src] }
+    // [helper] given 2 nodes, create links between the two
+    public func link(from src: Vertex<Item>, to dst: Vertex<Item>) { addLink(from: src, to: dst) }
     
     // [helper] given an entry point and a exit point, find the shortest path
     public func paths(from src: Vertex<Item>, to dst: Vertex<Item>) -> [[Vertex<Item>]]? {
@@ -36,12 +33,10 @@ public class AdjacencyList<T: Hashable>: CustomStringConvertible {
     }
     
     /* =============== Private functions =============== */
-    // adds the edge (two-way)
-    private func addEdge(from src: Vertex<Item>, to dst: Vertex<Item>) {
-        let srcEdge = Edge(src: src, dst: dst)
-        adj[src]?.append(srcEdge)
-        let dstEdge = Edge(src: dst, dst: src)
-        adj[dst]?.append(dstEdge)
+    // adds the link (two-way)
+    private func addLink(from src: Vertex<Item>, to dst: Vertex<Item>) {
+        adj[src]?.append(dst)
+        adj[dst]?.append(src)
     }
     
     // given two points, search for all (simple) paths)
@@ -57,7 +52,7 @@ public class AdjacencyList<T: Hashable>: CustomStringConvertible {
         } else {
             guard let neighbours = adj[lastVisited] else { return nil }
             for neighbour in neighbours {
-                let v = neighbour.dst // extract dst part only
+                let v = neighbour // extract dst part only
                 //print(v)
                 if !visited.contains(v) {
                     currentPath.append(v)
@@ -73,26 +68,31 @@ public class AdjacencyList<T: Hashable>: CustomStringConvertible {
     
     // print the paths list
     private func printPaths(from src: Vertex<Item>, to dst: Vertex<Item>, showShortest: Bool) {
-        if let pathsList = paths(from: src, to: dst) {
-            let paths = pathsList.sorted { $0.count < $1.count } // sort by length
-            
-            switch showShortest {
-            case true: // only select the shortest path(s)
-                let minSteps = paths[0].count
-                print("The Least Number of Hop(s): \n\t\(minSteps - 1)")
-                print("The Shortest Path(s):")
-                for path in paths {
-                    if path.count == minSteps { print("\t\(path)") }
-                }
-            default: // show all paths
-                print("All Simple Paths:")
-                var i = 1
-                for path in paths {
-                    print("#\(i)\t\(path)")
-                    i += 1
+        if let exists = adj[src]?.contains(dst) {
+            if(!exists) {
+                print("No path found!")
+                return
+            } else if let pathsList = paths(from: src, to: dst) {
+                let paths = pathsList.sorted { $0.count < $1.count } // sort by length
+                
+                switch showShortest {
+                case true: // only select the shortest path(s)
+                    let minSteps = paths[0].count
+                    print("The Least Number of Hop(s): \n\t\(minSteps - 1)")
+                    print("The Shortest Path(s):")
+                    for path in paths {
+                        if path.count == minSteps { print("\t\(path)") }
+                    }
+                default: // show all paths
+                    print("All Simple Paths:")
+                    var i = 1
+                    for path in paths {
+                        print("#\(i)\t\(path)")
+                        i += 1
+                    }
                 }
             }
-        } else { print("No path found!") }
+        }
     }
     
     /* =============== Printing =============== */
@@ -113,16 +113,12 @@ public class AdjacencyList<T: Hashable>: CustomStringConvertible {
     }
     
     public var description: String {
-        var result: [String] = []
-        for (vertex, edges) in adj {
-            var edgeString = ""
-            for (index, edge) in edges.enumerated() {
-                edgeString.append(index != edges.count - 1 ? "\(edge.dst), " : "\(edge.dst)")
-            }
-            result.append("\(vertex):\t[\(edgeString)]")
+        var results: [String] = []
+        for (vertex, neighbours) in adj {
+            results.append("\(vertex): \t\(neighbours)")
         }
-        result.sort()
-        let flatten = result.joined(separator: "\n")
-        return flatten
+        results.sort()
+        let formatted = results.joined(separator: "\n")
+        return formatted
     }
 }

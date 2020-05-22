@@ -8,9 +8,11 @@
 
 /* Begin PBXBuildFile section */
 		218E8A1224741D4700538A5C /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 218E8A1124741D4700538A5C /* main.swift */; };
-		218E8A1924741D6900538A5C /* Graph.swift in Sources */ = {isa = PBXBuildFile; fileRef = 218E8A1824741D6900538A5C /* Graph.swift */; };
+		218E8A1924741D6900538A5C /* AdjacencyList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 218E8A1824741D6900538A5C /* AdjacencyList.swift */; };
 		218E8A3D24743DB700538A5C /* Vertex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 218E8A3C24743DB700538A5C /* Vertex.swift */; };
-		218E8A7224770F4800538A5C /* Edge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 218E8A7124770F4800538A5C /* Edge.swift */; };
+		218E8A8224777F9B00538A5C /* AdjacencyList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 218E8A1824741D6900538A5C /* AdjacencyList.swift */; };
+		218E8A8324777F9B00538A5C /* Vertex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 218E8A3C24743DB700538A5C /* Vertex.swift */; };
+		218E8A852477806B00538A5C /* UndirectedGraphTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 218E8A792477793800538A5C /* UndirectedGraphTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -28,14 +30,23 @@
 /* Begin PBXFileReference section */
 		218E8A0E24741D4700538A5C /* UndirectedGraph */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = UndirectedGraph; sourceTree = BUILT_PRODUCTS_DIR; };
 		218E8A1124741D4700538A5C /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
-		218E8A1824741D6900538A5C /* Graph.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Graph.swift; sourceTree = "<group>"; };
+		218E8A1824741D6900538A5C /* AdjacencyList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdjacencyList.swift; sourceTree = "<group>"; };
 		218E8A3C24743DB700538A5C /* Vertex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Vertex.swift; sourceTree = "<group>"; };
 		218E8A6A2476BAB500538A5C /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		218E8A7124770F4800538A5C /* Edge.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Edge.swift; sourceTree = "<group>"; };
+		218E8A772477793800538A5C /* UndirectedGraphTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = UndirectedGraphTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		218E8A792477793800538A5C /* UndirectedGraphTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UndirectedGraphTests.swift; sourceTree = "<group>"; };
+		218E8A7B2477793800538A5C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		218E8A0B24741D4700538A5C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		218E8A742477793800538A5C /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -49,6 +60,7 @@
 			isa = PBXGroup;
 			children = (
 				218E8A1024741D4700538A5C /* UndirectedGraph */,
+				218E8A782477793800538A5C /* UndirectedGraphTests */,
 				218E8A0F24741D4700538A5C /* Products */,
 			);
 			sourceTree = "<group>";
@@ -57,6 +69,7 @@
 			isa = PBXGroup;
 			children = (
 				218E8A0E24741D4700538A5C /* UndirectedGraph */,
+				218E8A772477793800538A5C /* UndirectedGraphTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -64,13 +77,21 @@
 		218E8A1024741D4700538A5C /* UndirectedGraph */ = {
 			isa = PBXGroup;
 			children = (
-				218E8A7124770F4800538A5C /* Edge.swift */,
 				218E8A6A2476BAB500538A5C /* Info.plist */,
 				218E8A1124741D4700538A5C /* main.swift */,
-				218E8A1824741D6900538A5C /* Graph.swift */,
+				218E8A1824741D6900538A5C /* AdjacencyList.swift */,
 				218E8A3C24743DB700538A5C /* Vertex.swift */,
 			);
 			path = UndirectedGraph;
+			sourceTree = "<group>";
+		};
+		218E8A782477793800538A5C /* UndirectedGraphTests */ = {
+			isa = PBXGroup;
+			children = (
+				218E8A792477793800538A5C /* UndirectedGraphTests.swift */,
+				218E8A7B2477793800538A5C /* Info.plist */,
+			);
+			path = UndirectedGraphTests;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -93,6 +114,23 @@
 			productReference = 218E8A0E24741D4700538A5C /* UndirectedGraph */;
 			productType = "com.apple.product-type.tool";
 		};
+		218E8A762477793800538A5C /* UndirectedGraphTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 218E8A7C2477793800538A5C /* Build configuration list for PBXNativeTarget "UndirectedGraphTests" */;
+			buildPhases = (
+				218E8A732477793800538A5C /* Sources */,
+				218E8A742477793800538A5C /* Frameworks */,
+				218E8A752477793800538A5C /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = UndirectedGraphTests;
+			productName = UndirectedGraphTests;
+			productReference = 218E8A772477793800538A5C /* UndirectedGraphTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -104,6 +142,9 @@
 				ORGANIZATIONNAME = Pan;
 				TargetAttributes = {
 					218E8A0D24741D4700538A5C = {
+						CreatedOnToolsVersion = 11.4;
+					};
+					218E8A762477793800538A5C = {
 						CreatedOnToolsVersion = 11.4;
 					};
 				};
@@ -122,19 +163,39 @@
 			projectRoot = "";
 			targets = (
 				218E8A0D24741D4700538A5C /* UndirectedGraph */,
+				218E8A762477793800538A5C /* UndirectedGraphTests */,
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		218E8A752477793800538A5C /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		218E8A0A24741D4700538A5C /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				218E8A1924741D6900538A5C /* Graph.swift in Sources */,
-				218E8A7224770F4800538A5C /* Edge.swift in Sources */,
+				218E8A1924741D6900538A5C /* AdjacencyList.swift in Sources */,
 				218E8A1224741D4700538A5C /* main.swift in Sources */,
 				218E8A3D24743DB700538A5C /* Vertex.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		218E8A732477793800538A5C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				218E8A852477806B00538A5C /* UndirectedGraphTests.swift in Sources */,
+				218E8A8224777F9B00538A5C /* AdjacencyList.swift in Sources */,
+				218E8A8324777F9B00538A5C /* Vertex.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -282,6 +343,42 @@
 			};
 			name = Release;
 		};
+		218E8A7D2477793800538A5C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = 453675ZST2;
+				INFOPLIST_FILE = UndirectedGraphTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.panpan.UndirectedGraphTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		218E8A7E2477793800538A5C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = 453675ZST2;
+				INFOPLIST_FILE = UndirectedGraphTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.panpan.UndirectedGraphTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -299,6 +396,15 @@
 			buildConfigurations = (
 				218E8A1624741D4700538A5C /* Debug */,
 				218E8A1724741D4700538A5C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		218E8A7C2477793800538A5C /* Build configuration list for PBXNativeTarget "UndirectedGraphTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				218E8A7D2477793800538A5C /* Debug */,
+				218E8A7E2477793800538A5C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

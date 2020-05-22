@@ -8,14 +8,11 @@
 
 import Foundation
 
-public struct Vertex<T: Hashable>: CustomStringConvertible {
+/* Vertex */
+public struct Vertex<T: Hashable>: Hashable, CustomStringConvertible {
     var data: T
     public var description: String { "\(data)" }
-}
-
-extension Vertex: Hashable {
-    // whether two vertices are equal - based on the data they hold
-    public static func ==(a: Vertex, b: Vertex) -> Bool {
+    public static func ==(a: Vertex<T>, b: Vertex<T>) -> Bool {
         a.data == b.data
     }
 }

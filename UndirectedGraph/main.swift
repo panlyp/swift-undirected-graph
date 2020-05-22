@@ -20,6 +20,8 @@ let vF = graph.createVertex(data: "F")
 let vG = graph.createVertex(data: "G")
 let vH = graph.createVertex(data: "H")
 
+let vX = graph.createVertex(data: "X") // the lonewolf
+
 /* Set the two vertices for path searching */
 let src = vA
 let dst = vH
@@ -41,10 +43,14 @@ graph.link(from: vG, to: vH)
 /* Print adjancency list and path info */
 let divider = "==================================="
 
-measure(graph.printAdjacencyList())
-measure(graph.printAllPaths(from: src, to: dst))
-measure(graph.printShortestPath(from: src, to: dst))
+graph.printAdjacencyList()
+print(divider)
 
+measure(graph.printAllPaths(from: src, to: dst))
+print(divider)
+
+measure(graph.printShortestPath(from: src, to: dst))
+print(divider)
 
 /* A simple function to measure time elapsed */
 func measure(_ closure: @autoclosure () -> Any) {
@@ -52,5 +58,4 @@ func measure(_ closure: @autoclosure () -> Any) {
     _ = closure()
     let diff = CFAbsoluteTimeGetCurrent() - start
     print("\(diff) seconds elapsed")
-    print(divider)
 }

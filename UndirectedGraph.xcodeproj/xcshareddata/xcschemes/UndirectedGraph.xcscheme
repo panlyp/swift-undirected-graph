@@ -28,9 +28,9 @@
             buildForAnalyzing = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "218E8A5E2476B94700538A5C"
-               BuildableName = "Tests.xctest"
-               BlueprintName = "Tests"
+               BlueprintIdentifier = "218E8A762477793800538A5C"
+               BuildableName = "UndirectedGraphTests.xctest"
+               BlueprintName = "UndirectedGraphTests"
                ReferencedContainer = "container:UndirectedGraph.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -40,15 +40,26 @@
       buildConfiguration = "Debug"
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
-      shouldUseLaunchSchemeArgsEnv = "YES">
+      shouldUseLaunchSchemeArgsEnv = "YES"
+      codeCoverageEnabled = "YES"
+      onlyGenerateCoverageForSpecifiedTargets = "YES">
+      <CodeCoverageTargets>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "218E8A0D24741D4700538A5C"
+            BuildableName = "UndirectedGraph"
+            BlueprintName = "UndirectedGraph"
+            ReferencedContainer = "container:UndirectedGraph.xcodeproj">
+         </BuildableReference>
+      </CodeCoverageTargets>
       <Testables>
          <TestableReference
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "218E8A5E2476B94700538A5C"
-               BuildableName = "Tests.xctest"
-               BlueprintName = "Tests"
+               BlueprintIdentifier = "218E8A762477793800538A5C"
+               BuildableName = "UndirectedGraphTests.xctest"
+               BlueprintName = "UndirectedGraphTests"
                ReferencedContainer = "container:UndirectedGraph.xcodeproj">
             </BuildableReference>
          </TestableReference>
